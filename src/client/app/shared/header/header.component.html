@@ -1,0 +1,13 @@
+<nav class="topbar topbar-sticky">
+  <div class="container">
+    <div class="topbar-left">
+      <a class="topbar-brand" href="/">
+        <img class="logo-default" src="./assets/images/logo.png" height="50" alt="logo">
+      </a>
+    </div>
+    <div class="topbar-right">
+      <a *ngIf="signInButtonVisible" class="btn btn-sm btn-primary mr-4" (click)="onLogedIn($event)" href="#">Sign in</a>
+      <a *ngIf="buttonVisible" class="btn btn-sm btn-outline btn-primary hidden-sm-down" href="#" (click)="onclick($event)">{{buttonText}}</a>
+    </div>
+  </div>
+</nav>
