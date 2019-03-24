@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 import * as path from 'path';
+import * as fileUpload from 'express-fileupload';
 import ApiRouter from './routes/api-router';
 
 export default class Server {
@@ -22,6 +23,7 @@ export default class Server {
     this.app.use(logger('dev'));
     this.app.use(bodyParser.json());
     this.app.use(methodOverride());
+    this.app.use(fileUpload());
 
     // Server static files from /dist
     this.app.get('*.*', express.static(this.distFolder));

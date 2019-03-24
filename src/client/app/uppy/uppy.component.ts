@@ -22,7 +22,7 @@ export class UppyComponent implements AfterViewInit {
       .use(XHRUpload, {
         endpoint: '/api/upload',
         formData: true,
-        fieldName: 'files[]'
+        fieldName: 'fileData'
       });
   }
 }

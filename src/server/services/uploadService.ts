@@ -1,3 +1,5 @@
 export class UploadService {
-  upload(files: File[]) {}
+  upload(fileData: any) {
+    const url = `https://api.github.com/repos/:owner/:repo/contents/:path`;
+  }
 }
