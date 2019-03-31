@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export class UploadService {
+export class GitHubService {
   async upload(fileData: any) {
     const owner = process.env.GITHUB_OWNER;
     const repo = process.env.GITHUB_REPO;
