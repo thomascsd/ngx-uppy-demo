@@ -5,15 +5,12 @@ import { UploadService } from '../services/uploadService';
 
 const apiRoute: Route = {
   path: '/upload',
-  handler(req: express.Request, res: express.Response): any {
+  async handler(req: express.Request, res: express.Response) {
     const service = new UploadService();
     const { fileData } = req['files'];
 
-    service.upload(fileData);
-
-    return res.json({
-      message: 'hello'
-    });
+    const gitHubRes = await service.upload(fileData);
+    return res.json(gitHubRes);
   }
 };
 
