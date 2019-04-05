@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { GitHubResponse } from '../interfaces/GitHubResponse';
 
 export class GitHubService {
   async upload(fileData: any) {
@@ -9,7 +10,7 @@ export class GitHubService {
 
     const res = await axios.put<GitHubResponse>(url, {
       message: 'my commit message',
-      content: fileData.toString('base64')
+      content: fileData.data.toString('base64')
     });
 
     return res.data;

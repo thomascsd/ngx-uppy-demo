@@ -1,9 +1,9 @@
-interface GitHubResponse {
+export interface GitHubResponse {
   content: Content;
   commit: Commit;
 }
 
-interface Commit {
+export interface Commit {
   sha: string;
   node_id: string;
   url: string;
@@ -16,20 +16,20 @@ interface Commit {
   verification: Verification;
 }
 
-interface Verification {
+export interface Verification {
   verified: boolean;
   reason: string;
   signature?: any;
   payload?: any;
 }
 
-interface Parent {
+export interface Parent {
   url: string;
   html_url: string;
   sha: string;
 }
 
-interface Tree {
+export interface Tree {
   url: string;
   sha: string;
 }

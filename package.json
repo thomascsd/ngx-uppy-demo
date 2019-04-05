@@ -12,7 +12,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod",
+    "server-test": "mocha -r ts-node/register src/server/tests/**/*.spec.ts"
   },
   "private": true,
   "dependencies": {
