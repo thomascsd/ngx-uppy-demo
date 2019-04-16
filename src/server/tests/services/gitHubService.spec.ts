@@ -6,7 +6,13 @@ import { GitHubResponse } from '../../interfaces/GitHubResponse';
 require('dotenv').config({ path: __dirname + '/config/.env' });
 
 describe('GitHub的操作', () => {
-  const githubService = new GitHubService();
+  const clientId = process.env.CLIENT_ID;
+  const clientSecret = process.env.CLIENT_SECRET;
+  const githubService = new GitHubService(clientId, clientSecret);
+
+  console.log(`clientId:${clientId}`);
+  console.log(`clientSecret:${clientSecret}`);
+
   beforeEach(() => {});
 
   it('上傳檔案', async () => {
@@ -15,8 +21,14 @@ describe('GitHub的操作', () => {
       name: 'log.xml',
       data: buff
     };
+    const owner = 'thomascsd';
+    const repo = 'ngx-uppy-demo';
 
-    const gitHubRes: GitHubResponse = await githubService.upload(fileData);
+    const gitHubRes: GitHubResponse = await githubService.upload(
+      fileData,
+      owner,
+      repo
+    );
 
     assert.isNotNull(gitHubRes);
     assert.include(gitHubRes.content.name, 'log.xml', '檔案名是log.xml');

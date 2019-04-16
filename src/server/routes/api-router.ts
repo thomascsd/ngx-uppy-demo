@@ -6,10 +6,14 @@ import { GitHubService } from '../services/gitHubService';
 const apiRoute: Route = {
   path: '/upload',
   async handler(req: express.Request, res: express.Response) {
-    const service = new GitHubService();
+    const owner = process.env.GITHUB_OWNER;
+    const repo = process.env.GITHUB_REPO;
+    const clientId = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
+    const service = new GitHubService(clientId, clientSecret);
     const { fileData } = req['files'];
 
-    const gitHubRes = await service.upload(fileData);
+    const gitHubRes = await service.upload(fileData, owner, repo);
     return res.json(gitHubRes);
   }
 };
