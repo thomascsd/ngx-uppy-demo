@@ -1,12 +1,11 @@
-import * as GitHub from 'github-api';
+import { GitHubApiWrapper } from './gitHubApiWrapper';
 import { GitHubResponse } from '../interfaces/GitHubResponse';
 import { GitHubRequest } from '../interfaces/GitHubRequest';
 
 export class GitHubService {
-  constructor(private clientId: string, private clientSecret: string) {}
+  constructor() {}
 
   async upload(req: GitHubRequest) {
-    // const path = `files/${fileData.name}`;
     // const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?client_id=${
     //   this.clientId
     // }&client_secret=${this.clientSecret}`;
@@ -20,11 +19,13 @@ export class GitHubService {
 
     // return res.data;
 
-    const gh = new GitHub({
+    const wrapper = new GitHubApiWrapper({
       username: req.username,
       password: req.password
     });
 
-    gh;
+    const res = await wrapper.writeFile(req);
+
+    return res;
   }
 }

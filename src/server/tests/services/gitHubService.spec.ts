@@ -3,15 +3,13 @@ import 'mocha';
 import * as fs from 'fs';
 import { GitHubService } from '../../services/gitHubService';
 import { GitHubResponse } from '../../interfaces/GitHubResponse';
-require('dotenv').config({ path: __dirname + '/config/.env' });
+import { GitHubRequest } from '../../interfaces/GitHubRequest';
+const envPath = process.cwd() + '\\src\\server\\config\\.env';
+console.log(`envPath:${envPath}`);
+require('dotenv').config({ path: envPath });
 
 describe('GitHub的操作', () => {
-  const clientId = process.env.CLIENT_ID;
-  const clientSecret = process.env.CLIENT_SECRET;
-  const githubService = new GitHubService(clientId, clientSecret);
-
-  console.log(`clientId:${clientId}`);
-  console.log(`clientSecret:${clientSecret}`);
+  const githubService = new GitHubService();
 
   beforeEach(() => {});
 
@@ -21,14 +19,22 @@ describe('GitHub的操作', () => {
       name: 'log.xml',
       data: buff
     };
-    const owner = 'thomascsd';
-    const repo = 'ngx-uppy-demo';
+    const req = {
+      fileData: fileData,
+      owner: process.env.GITHUB_OWNER,
+      repo: process.env.GITHUB_REPO,
+      username: process.env.GITHUB_USERNAME,
+      password: process.env.GITHUB_PASSWORD,
+      options: {
+        commiter: 'thomascsd808@gmail.com',
+        author: process.env.GITHUB_OWNER,
+        encode: false
+      }
+    } as GitHubRequest;
 
-    const gitHubRes: GitHubResponse = await githubService.upload(
-      fileData,
-      owner,
-      repo
-    );
+    console.log(req);
+
+    const gitHubRes: GitHubResponse = await githubService.upload(req);
 
     assert.isNotNull(gitHubRes);
     assert.include(gitHubRes.content.name, 'log.xml', '檔案名是log.xml');

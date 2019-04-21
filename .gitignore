@@ -44,3 +44,5 @@ yarn-error.log
 Thumbs.db
 
 /src/server/config/.env
+/files/*
+!/files/README.md
