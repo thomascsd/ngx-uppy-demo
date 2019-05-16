@@ -1,9 +1,17 @@
 import * as filestack from 'filestack-js';
 import * as crypto from 'crypto';
 import { FileResponse } from '../interfaces/FileResponse';
+import { DataBase } from '../db';
 
 export class FileService {
-  constructor() {}
+  private db: DataBase;
+  constructor() {
+    this.db = new DataBase();
+  }
+
+  getFiles(): FileResponse[] {
+    return this.db.getDatas();
+  }
 
   async upload(fileData: any): Promise<FileResponse> {
     const client = filestack.init(process.env.FILESTACK_APIKEY);
@@ -18,6 +26,8 @@ export class FileService {
       { filename: fileData.name },
       security
     );
+
+    this.db.write(res);
 
     return res;
   }
