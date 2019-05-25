@@ -33,6 +33,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@uppy/core/dist/style.css",
               "node_modules/@uppy/dashboard/dist/style.css",
+              "node_modules/@uppy/file-input/dist/style.css",
               "src/client/sass/styles.scss"
             ],
             "scripts": []

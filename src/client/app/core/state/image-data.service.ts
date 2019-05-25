@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { ImageDataStore, ImageDatum } from './';
+import { ImageDataStore } from './image-data.store';
+import { ImageDatum } from './image-datum.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })

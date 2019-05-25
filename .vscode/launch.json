@@ -5,7 +5,7 @@
       "name": "ts-node",
       "type": "node",
       "request": "launch",
-      "args": ["${workspaceRoot}/server/index.ts"],
+      "args": ["${workspaceRoot}/src/server/index.ts"],
       "runtimeArgs": ["--nolazy", "-r", "${workspaceRoot}/tshook.js"],
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",

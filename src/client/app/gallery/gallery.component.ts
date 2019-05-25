@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageDatum, ImageDataQuery } from '../core/state';
+import { ImageDatum, ImageDataQuery, ImageDataService } from '../core/state';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,13 +8,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  images: Observable<ImageDatum[]>;
+  images$: Observable<ImageDatum[]>;
 
-  constructor(private imageDataQuery: ImageDataQuery) {}
+  constructor(
+    private imageDataQuery: ImageDataQuery,
+    private imageDataService: ImageDataService
+  ) {}
 
   ngOnInit() {
-    this.images = this.imageDataQuery.selectActive() as Observable<
-      ImageDatum[]
-    >;
+    this.images$ = this.imageDataQuery.selectAll();
+
+    this.imageDataService.get();
   }
 }

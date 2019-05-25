@@ -2,6 +2,7 @@ import { Component, AfterViewInit, Input } from '@angular/core';
 import * as Uppy from '@uppy/core';
 import * as Dashboard from '@uppy/dashboard';
 import * as XHRUpload from '@uppy/xhr-upload';
+import * as FileUpload from '@uppy/file-input';
 
 @Component({
   selector: 'app-uppy',
@@ -12,19 +13,33 @@ export class UppyComponent implements AfterViewInit {
   constructor() {}
 
   @Input() useDashboard = false;
+  @Input() useFileUpload = false;
 
   ngAfterViewInit(): void {
-    const uppy = Uppy();
+    const uppy = Uppy({
+      debug: true,
+      autoProceed: true
+    });
 
-    uppy
-      .use(Dashboard, {
+    if (this.useDashboard) {
+      uppy.use(Dashboard, {
         inline: true,
         target: '.uploadContainer'
-      })
-      .use(XHRUpload, {
-        endpoint: '/api/file',
-        formData: true,
-        fieldName: 'fileData'
       });
+    }
+
+    if (this.useFileUpload) {
+      uppy.use(FileUpload, {
+        pretty: true,
+        target: '.uploadContainer',
+        inputName: 'fileData'
+      });
+    }
+
+    uppy.use(XHRUpload, {
+      endpoint: '/api/file',
+      formData: true,
+      fieldName: 'fileData'
+    });
   }
 }

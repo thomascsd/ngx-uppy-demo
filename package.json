@@ -1,6 +1,6 @@
 {
-  "name": "angular-express-starter",
-  "version": "0.3.0",
+  "name": "ngx-uppy-demo",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "start": "ts-node --project src/server/tsconfig.json ./src/server/index.ts",
@@ -46,6 +46,7 @@
     "@types/node": "^12.0.2",
     "@uppy/core": "^1.0.2",
     "@uppy/dashboard": "^1.0.2",
+    "@uppy/file-input": "^1.0.2",
     "@uppy/xhr-upload": "^1.0.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
