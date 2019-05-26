@@ -1,7 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <app-uppy [useDashboard]="false" [useFileUpload]="true"></app-uppy>
+      <mat-slide-toggle></mat-slide-toggle>
+    </div>
+    <div class="col-xs-12">
+      <mat-slide-toggle></mat-slide-toggle>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-uppy [useDashboard]="true" [useFileUpload]="false"></app-uppy>
     </div>
   </div>
   <div class="row">

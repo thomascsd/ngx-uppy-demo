@@ -18,9 +18,7 @@ export class ImageDataService {
     });
   }
 
-  add() {
-    // this.http.post().subscribe((entity: ServerResponse) => {
-    // this.imageDataStore.add(entity);
-    // });
+  add(entity: ImageDatum) {
+    this.imageDataStore.add(entity);
   }
 }
