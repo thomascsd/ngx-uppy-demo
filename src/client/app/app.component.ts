@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  useDashboard=false;
-  useFileUpload=true;
+  useDashboard = false;
+  useFileUpload = true;
+
+  chageDashboard(value: MatSlideToggleChange) {
+    this.useDashboard = value.checked;
+  }
+
+  changeFileUpload(value: MatSlideToggleChange) {
+    this.useFileUpload = value.checked;
+  }
 }

@@ -25,7 +25,7 @@ import { MaterialModule } from './material/material.module';
   ],
   imports: [
     BrowserModule,
-    ForsmModule,
+    FormsModule,
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
