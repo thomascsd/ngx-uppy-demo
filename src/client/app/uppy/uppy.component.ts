@@ -12,10 +12,10 @@ import { ImageDataService } from '../core/state/image-data.service';
   styleUrls: ['./uppy.component.scss']
 })
 export class UppyComponent implements AfterViewInit {
-  constructor(private imageDataService: ImageDataService) {}
-
   @Input() useDashboard = false;
   @Input() useFileUpload = false;
+
+  constructor(private imageDataService: ImageDataService) {}
 
   ngAfterViewInit(): void {
     const uppy = Uppy({

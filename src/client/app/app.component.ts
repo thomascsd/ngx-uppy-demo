@@ -9,12 +9,4 @@ import { MatSlideToggleChange } from '@angular/material';
 export class AppComponent {
   useDashboard = false;
   useFileUpload = true;
-
-  chageDashboard(value: MatSlideToggleChange) {
-    this.useDashboard = value.checked;
-  }
-
-  changeFileUpload(value: MatSlideToggleChange) {
-    this.useFileUpload = value.checked;
-  }
 }
