@@ -27,7 +27,9 @@ export class UppyComponent implements AfterViewInit {
     if (this.useDashboard) {
       uppy.use(Dashboard, {
         inline: true,
-        target: '.uploadContainer'
+        target: '.uploadContainer',
+        wdith: 500,
+        height: 300
       });
     }
 
@@ -39,7 +41,8 @@ export class UppyComponent implements AfterViewInit {
           inputName: 'fileData'
         })
         .use(Processbar, {
-          fixed: false,
+          target: 'body',
+          fixed: true,
           hideAfterFinish: true
         });
     }
