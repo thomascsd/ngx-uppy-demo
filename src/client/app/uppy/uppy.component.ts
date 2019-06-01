@@ -3,6 +3,7 @@ import * as Uppy from '@uppy/core';
 import * as Dashboard from '@uppy/dashboard';
 import * as XHRUpload from '@uppy/xhr-upload';
 import * as FileUpload from '@uppy/file-input';
+import * as Processbar from '@uppy/progress-bar';
 import { ImageDatum } from '../core/state/image-datum.model';
 import { ImageDataService } from '../core/state/image-data.service';
 
@@ -31,11 +32,16 @@ export class UppyComponent implements AfterViewInit {
     }
 
     if (this.useFileUpload) {
-      uppy.use(FileUpload, {
-        pretty: true,
-        target: '.uploadContainer',
-        inputName: 'fileData'
-      });
+      uppy
+        .use(FileUpload, {
+          pretty: true,
+          target: '.uploadContainer',
+          inputName: 'fileData'
+        })
+        .use(Processbar, {
+          fixed: false,
+          hideAfterFinish: true
+        });
     }
 
     uppy.use(XHRUpload, {
