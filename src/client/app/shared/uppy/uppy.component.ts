@@ -4,8 +4,8 @@ import * as Dashboard from '@uppy/dashboard';
 import * as XHRUpload from '@uppy/xhr-upload';
 import * as FileUpload from '@uppy/file-input';
 import * as Processbar from '@uppy/progress-bar';
-import { ImageDatum } from '../core/state/image-datum.model';
-import { ImageDataService } from '../core/state/image-data.service';
+import { ImageDatum } from '../../core/state/image-datum.model';
+import { ImageDataService } from '../../core/state/image-data.service';
 
 @Component({
   selector: 'app-uppy',
