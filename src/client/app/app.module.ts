@@ -7,7 +7,6 @@ import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { LayoutComponent } from './layout/layout.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -17,7 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, DashboardComponent, FileUploadComponent],
+  declarations: [AppComponent, DashboardComponent, FileUploadComponent],
   imports: [
     BrowserModule,
     FormsModule,
