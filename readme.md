@@ -1,19 +1,15 @@
 <h1 align="center">Welcome to ngx-uppy-demo 👋</h1>
-<p>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-</p>
 
 > Angular and Uppy demo
 
-## Install
+## Prerequest
 
-```sh
-npm install
-```
+因為使用[filestack](https://www.filestack.com/)來儲存圖片，所以請先取得 APIKey
 
 ## Usage
 
 ```sh
+npm install
 npm run start
 ```
 
