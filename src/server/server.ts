@@ -3,7 +3,7 @@ import { useExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 import * as logger from 'morgan';
 import * as path from 'path';
-import { FileController } from './controllers/FileController';
+import { ImageFileController } from './controllers/ImageFileController';
 
 export default class Server {
   public app: express.Application;
@@ -39,7 +39,7 @@ export default class Server {
   public setControllers() {
     useExpressServer(this.app, {
       routePrefix: 'api',
-      controllers: [FileController]
+      controllers: [ImageFileController]
     });
   }
 

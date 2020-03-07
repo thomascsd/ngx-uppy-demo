@@ -1,11 +1,11 @@
 import { JsonController, Get, Post, Body } from 'routing-controllers';
 import { Inject } from 'typedi';
-import { FileService } from '../services/fileService';
+import { ImageFileService } from '../services/ImageFileService';
 
 @JsonController()
 @Inject()
-export class FileController {
-  constructor(private fileService: FileService) {}
+export class ImageFileController {
+  constructor(private fileService: ImageFileService) {}
 
   @Get('/file')
   getFiles() {

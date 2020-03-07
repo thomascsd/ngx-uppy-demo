@@ -1,17 +1,17 @@
 import { Inject } from 'typedi';
 import { RestDbService } from './RestDbService';
-import { FileModel } from '../../shared/models/FileModel';
+import { ImageFile } from '../../shared/models';
 
 @Inject()
-export class FileService {
+export class ImageFileService {
   constructor(private db: RestDbService) {}
 
-  getFiles(): Promise<FileModel[]> {
-    return this.db.getDatas<FileModel>('/file');
+  getFiles(): Promise<ImageFile[]> {
+    return this.db.getDatas<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
   }
 
-  async upload(fileData: FileModel): Promise<FileModel> {
-    const res = await this.db.saveData<FileModel>('/file', fileData);
+  async upload(imageFile: ImageFile): Promise<ImageFile> {
+    const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);
 
     return res;
   }

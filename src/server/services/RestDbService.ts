@@ -1,55 +1,61 @@
-import got from 'got';
+const Airtable = require('airtable-node');
 import { Inject } from 'typedi';
+import { BaseModel } from '../../shared/models/BaseModel';
+
+export interface ListOptions {
+  filterByFormula?: string;
+  maxRecords?: number;
+  pageSize?: number;
+  sort?: { field: string; direction: 'asc' | 'desc' }[];
+  view?: string;
+  cellFormat?: 'json' | 'string';
+  timeZone?: string;
+  userLocale?: string;
+}
 
 @Inject()
 export class RestDbService {
-  async getDatas<T>(tableName: string, query?: any[]): Promise<T[]> {
-    let url = `${process.env.RESTDB_URL}${tableName}`;
-    const querystring = this.getQuery(query || []);
+  async getDatas<T extends BaseModel>(
+    baseId: string,
+    tableName: string,
+    options?: ListOptions
+  ): Promise<T[]> {
+    const airtable = this.getAirTableClient(baseId, tableName);
 
-    url += querystring;
-    const client = this.getGot();
-    const body = await client.get(url).json<T[]>();
+    const { records } = await airtable.list(options);
 
-    return body;
-  }
-
-  async saveData<T>(tableName: string, data: T) {
-    const url = `${process.env.RESTDB_URL}${tableName}`;
-    const client = this.getGot();
-
-    const body = await client
-      .post(url, {
-        json: data
-      })
-      .json<T>();
-
-    console.log(body);
+    const body: T[] = records.map(o => {
+      const fields = o.fields;
+      fields.id = o.id;
+      return fields;
+    }) as T[];
 
     return body;
   }
 
-  private getGot() {
-    const client = got.extend({
-      headers: {
-        'cache-control': 'no-cache',
-        'x-apikey': `${process.env.RESTDB_API}`
-      }
-    });
+  async saveData<T extends BaseModel>(baseId: string, tableName: string, data: T) {
+    const airtable = this.getAirTableClient(baseId, tableName);
+    const body = await airtable.create({ fields: data });
 
-    return client;
+    console.dir(body);
+    return body;
   }
 
-  private getQuery(query: any[]): string {
-    if (!query.length) {
-      return '';
-    }
+  async updateData<T extends BaseModel>(baseId: string, tableName: string, data: T) {
+    const id = data.id;
+    delete data.id;
+    const airtable = this.getAirTableClient(baseId, tableName);
+    const body = await airtable.update(id, data);
 
-    const content: string = query.reduce((acct, obj) => {
-      acct += `"${obj['field']}":"${obj['value']}",`;
-      return acct;
-    }, '');
+    console.dir(body);
+    return body;
+  }
 
-    return `?q={${content.substr(0, content.length - 1)}}`;
+  private getAirTableClient(baseId: string, tableName: string) {
+    const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API })
+      .base(baseId)
+      .table(tableName);
+
+    return airtable;
   }
 }
