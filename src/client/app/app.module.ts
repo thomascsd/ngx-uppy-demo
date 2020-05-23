@@ -28,9 +28,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     GallerizeModule,
     MaterialModule,
     AppRoutingModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [] : AkitaNgDevtools,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
