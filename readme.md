@@ -2,6 +2,10 @@
 
 > Angular and Uppy demo
 
+## Blog
+
+Blog 文章[Uppy - 最方便的上傳套件](https://thomascsd.github.io/tutorial-of-uppy)的範例
+
 ## Prerequest
 
 因為使用[filestack](https://www.filestack.com/)來儲存圖片，所以請先取得 APIKey
