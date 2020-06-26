@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers';
+import { JsonController, Get, Post, Body, UploadedFile } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { ImageFileService } from '../services/ImageFileService';
 
@@ -13,5 +13,7 @@ export class ImageFileController {
   }
 
   @Post('/file')
-  uploadFile() {}
+  uploadFile(@UploadedFile('fileData') file: any) {
+    return this.fileService.upload(file);
+  }
 }

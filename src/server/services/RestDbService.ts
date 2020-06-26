@@ -24,7 +24,7 @@ export class RestDbService {
 
     const { records } = await airtable.list(options);
 
-    const body: T[] = records.map(o => {
+    const body: T[] = records.map((o) => {
       const fields = o.fields;
       fields.id = o.id;
       return fields;
