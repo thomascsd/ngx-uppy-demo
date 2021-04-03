@@ -1,6 +1,18 @@
-import { JsonController, Get, Post, Body, UploadedFile } from 'routing-controllers';
+import { JsonController, Get, Post, UploadedFile } from 'routing-controllers';
+import * as multer from 'multer';
 import { Inject } from 'typedi';
 import { ImageFileService } from '../services/ImageFileService';
+
+const fileUploadOptions = () => {
+  storage: multer.diskStorage({
+    destination: (req: any, file: any, cb: any) => {
+      cb(null, '/uploadFiles');
+    },
+    filename: (req: any, file: any, cb: any) => {
+      cb(null, '123');
+    },
+  });
+};
 
 @JsonController()
 @Inject()
@@ -13,7 +25,7 @@ export class ImageFileController {
   }
 
   @Post('/file')
-  uploadFile(@UploadedFile('fileData') file: any) {
+  uploadFile(@UploadedFile('fileData', { options: fileUploadOptions }) file: any) {
     return this.fileService.upload(file);
   }
 }

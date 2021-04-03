@@ -12,17 +12,17 @@ export class ImageFileService {
   }
 
   async upload(fileData: any): Promise<ImageFile> {
-    const fileRes = await this.fileService.upload(fileData);
+    // const fileRes = await this.fileService.upload(fileData);
     const imageFile = new ImageFile();
 
-    imageFile.filename = fileRes.filename;
+    imageFile.filename = fileData.filename;
     imageFile.id = '';
-    imageFile.mimetype = fileRes.mimetype;
-    imageFile.size = fileRes.size;
+    imageFile.mimetype = fileData.mimetype;
+    imageFile.size = fileData.size;
     imageFile.file = [
       {
-        url: fileRes.url,
-        filename: fileRes.filename,
+        url: `${process.env.IMAGE_URL_DOMAIN}/uploadFiles/${fileData.filename}`,
+        filename: fileData.filename,
       },
     ];
     const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);
