@@ -1,28 +1,32 @@
 import { Inject } from 'typedi';
 import { RestDbService } from './RestDbService';
-import { FileService } from './FileService';
 import { ImageFile } from '../../shared/models';
+import { rmSync } from 'fs';
+import { join } from 'path';
 
 @Inject()
 export class ImageFileService {
-  constructor(private db: RestDbService, private fileService: FileService) {}
+  constructor(private db: RestDbService) {}
 
   getFiles(): Promise<ImageFile[]> {
     return this.db.getDatas<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
   }
 
-  async upload(fileData: any): Promise<ImageFile> {
-    // const fileRes = await this.fileService.upload(fileData);
+  async upload(fileData: Express.Multer.File): Promise<ImageFile> {
     const imageFile = new ImageFile();
+    // const path = join(process.cwd(), fileData.path);
 
-    imageFile.filename = fileData.filename;
-    imageFile.id = '';
+    // rmSync(path, {
+    //   force: true,
+    // });
+
+    imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
     imageFile.size = fileData.size;
     imageFile.file = [
       {
-        url: `${process.env.IMAGE_URL_DOMAIN}/uploadFiles/${fileData.filename}`,
-        filename: fileData.filename,
+        url: `${process.env.IMAGE_URL_DOMAIN}/${fileData.destination}/${fileData.filename}`,
+        filename: fileData.originalname,
       },
     ];
     const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);

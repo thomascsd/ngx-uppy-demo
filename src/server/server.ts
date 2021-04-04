@@ -4,6 +4,7 @@ import { Container } from 'typedi';
 import * as logger from 'morgan';
 import * as path from 'path';
 import { ImageFileController } from './controllers/ImageFileController';
+import { FileController } from './controllers/FileController';
 
 export default class Server {
   public app: express.Application;
@@ -39,7 +40,7 @@ export default class Server {
   public setControllers() {
     useExpressServer(this.app, {
       routePrefix: 'api',
-      controllers: [ImageFileController]
+      controllers: [ImageFileController, FileController],
     });
   }
 

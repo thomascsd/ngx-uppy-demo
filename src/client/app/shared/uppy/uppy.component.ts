@@ -10,7 +10,7 @@ import { ImageDataService } from '../../core/state/image-data.service';
 @Component({
   selector: 'app-uppy',
   templateUrl: './uppy.component.html',
-  styleUrls: ['./uppy.component.scss']
+  styleUrls: ['./uppy.component.scss'],
 })
 export class UppyComponent implements AfterViewInit {
   @Input() useDashboard = false;
@@ -21,7 +21,7 @@ export class UppyComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const uppy = Uppy({
       debug: true,
-      autoProceed: true
+      autoProceed: true,
     });
 
     if (this.useDashboard) {
@@ -29,7 +29,7 @@ export class UppyComponent implements AfterViewInit {
         inline: true,
         target: '.uploadContainer',
         wdith: 500,
-        height: 300
+        height: 300,
       });
     }
 
@@ -38,19 +38,19 @@ export class UppyComponent implements AfterViewInit {
         .use(FileUpload, {
           pretty: true,
           target: '.uploadContainer',
-          inputName: 'fileData'
+          inputName: 'fileData',
         })
         .use(Processbar, {
           target: 'body',
           fixed: true,
-          hideAfterFinish: true
+          hideAfterFinish: true,
         });
     }
 
     uppy.use(XHRUpload, {
-      endpoint: '/api/file',
+      endpoint: '/api/File/Upload',
       formData: true,
-      fieldName: 'fileData'
+      fieldName: 'fileData',
     });
 
     uppy.on('upload-success', (file, response: any) => {
