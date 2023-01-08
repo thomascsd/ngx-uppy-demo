@@ -127,7 +127,6 @@
       }
     }
   },
-  "defaultProject": "angular-express-starter",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
@@ -138,7 +137,9 @@
     }
   },
   "cli": {
-    "defaultCollection": "@datorama/akita",
-    "analytics": "129c293a-8374-41e5-ae7e-7197beacd132"
+    "analytics": "129c293a-8374-41e5-ae7e-7197beacd132",
+    "schematicCollections": [
+      "@datorama/akita"
+    ]
   }
 }
