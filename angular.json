@@ -17,15 +17,9 @@
             "tsConfig": "src/client/tsconfig.app.json",
             "polyfills": "src/client/polyfills.ts",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/client",
-                "src/client/themes"
-              ]
+              "includePaths": ["src/client", "src/client/themes"]
             },
-            "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
-            ],
+            "assets": ["src/client/assets", "src/client/favicon.ico"],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -104,10 +98,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/client/sass/styles.scss"
             ],
-            "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
-            ]
+            "assets": ["src/client/assets", "src/client/favicon.ico"]
           }
         }
       }
@@ -138,8 +129,6 @@
   },
   "cli": {
     "analytics": "129c293a-8374-41e5-ae7e-7197beacd132",
-    "schematicCollections": [
-      "@datorama/akita"
-    ]
+    "schematicCollections": []
   }
 }
