@@ -5,27 +5,21 @@
   "projects": {
     "angular-express-starter": {
       "root": "",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/client/index.html",
-            "main": "src/client/main.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/client",
-                "src/client/themes"
-              ]
+              "includePaths": ["src", "src/themes"]
             },
-            "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
-            ],
+            "assets": ["src/assets", "src/favicon.ico"],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -36,7 +30,7 @@
               "node_modules/@uppy/dashboard/dist/style.css",
               "node_modules/@uppy/file-input/dist/style.css",
               "node_modules/@uppy/progress-bar/dist/style.css",
-              "src/client/sass/styles.scss"
+              "src/sass/styles.scss"
             ],
             "scripts": [],
             "vendorChunk": true,
@@ -63,8 +57,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -91,10 +85,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
               {
@@ -102,21 +96,15 @@
                 "inject": true
               },
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/client/sass/styles.scss"
+              "src/sass/styles.scss"
             ],
-            "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
-            ]
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/client/**/*.ts",
-              "src/client/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -133,8 +121,6 @@
   },
   "cli": {
     "analytics": "129c293a-8374-41e5-ae7e-7197beacd132",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }
