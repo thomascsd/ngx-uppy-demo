@@ -17,9 +17,15 @@
             "tsConfig": "src/client/tsconfig.app.json",
             "polyfills": "src/client/polyfills.ts",
             "stylePreprocessorOptions": {
-              "includePaths": ["src/client", "src/client/themes"]
+              "includePaths": [
+                "src/client",
+                "src/client/themes"
+              ]
             },
-            "assets": ["src/client/assets", "src/client/favicon.ico"],
+            "assets": [
+              "src/client/assets",
+              "src/client/favicon.ico"
+            ],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -98,21 +104,19 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/client/sass/styles.scss"
             ],
-            "assets": ["src/client/assets", "src/client/favicon.ico"]
+            "assets": [
+              "src/client/assets",
+              "src/client/favicon.ico"
+            ]
           }
-        }
-      }
-    },
-    "angular-express-starter-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular-express-starter:serve"
+            "lintFilePatterns": [
+              "src/client/**/*.ts",
+              "src/client/**/*.html"
+            ]
           }
         }
       }
@@ -129,6 +133,8 @@
   },
   "cli": {
     "analytics": "129c293a-8374-41e5-ae7e-7197beacd132",
-    "schematicCollections": []
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
