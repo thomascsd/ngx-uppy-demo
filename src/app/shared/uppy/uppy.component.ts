@@ -1,11 +1,11 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
-import * as Uppy from '@uppy/core';
-import * as Dashboard from '@uppy/dashboard';
-import * as XHRUpload from '@uppy/xhr-upload';
-import * as FileUpload from '@uppy/file-input';
-import * as Processbar from '@uppy/progress-bar';
-import { ImageDatum } from '../../core/state/image-datum.model';
-import { ImageDataService } from '../../core/state/image-data.service';
+import Uppy from '@uppy/core';
+import Dashboard from '@uppy/dashboard';
+import XHRUpload from '@uppy/xhr-upload';
+import FileUpload from '@uppy/file-input';
+import Processbar from '@uppy/progress-bar';
+import { ImageDatum } from '../../core/models/image-datum';
+import { ImageDataService } from '../../core/services/image-data.service';
 
 @Component({
   selector: 'app-uppy',
@@ -19,7 +19,7 @@ export class UppyComponent implements AfterViewInit {
   constructor(private imageDataService: ImageDataService) {}
 
   ngAfterViewInit(): void {
-    const uppy = Uppy({
+    const uppy = new Uppy({
       debug: true,
       autoProceed: true,
     });
@@ -28,7 +28,7 @@ export class UppyComponent implements AfterViewInit {
       uppy.use(Dashboard, {
         inline: true,
         target: '.uploadContainer',
-        wdith: 500,
+        width: 500,
         height: 300,
       });
     }

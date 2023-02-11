@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageDatum, ImageDataQuery, ImageDataService } from '../../core/state';
+import { ImageDataService } from '../../core/services/image-data.service';
 import { Observable } from 'rxjs';
+import { ImageDatum } from '../../core/models/image-datum';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss']
+  styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
   images$: Observable<ImageDatum[]>;
 
-  constructor(private imageDataQuery: ImageDataQuery, private imageDataService: ImageDataService) {}
+  constructor(private imageDataService: ImageDataService) {}
 
   ngOnInit() {
-    this.images$ = this.imageDataQuery.selectAll();
-
-    this.imageDataService.get();
+    this.images$ = this.imageDataService.get();
   }
 }

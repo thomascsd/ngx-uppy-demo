@@ -1,7 +1,5 @@
-import { ID } from '@datorama/akita';
-
 export interface ImageDatum {
-  handle: ID;
+  handle: number;
   url: string;
   filename: string;
   size: number;
@@ -11,6 +9,6 @@ export interface ImageDatum {
 
 export function createImageDatum(params: Partial<ImageDatum>) {
   return {
-    url: ''
+    url: '',
   } as ImageDatum;
 }
