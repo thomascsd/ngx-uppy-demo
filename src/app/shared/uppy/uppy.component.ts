@@ -4,8 +4,8 @@ import Dashboard from '@uppy/dashboard';
 import XHRUpload from '@uppy/xhr-upload';
 import FileUpload from '@uppy/file-input';
 import Processbar from '@uppy/progress-bar';
-import { ImageDatum } from '../../core/models/image-datum';
 import { ImageDataService } from '../../core/services/image-data.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-uppy',
@@ -48,13 +48,11 @@ export class UppyComponent implements AfterViewInit {
     }
 
     uppy.use(XHRUpload, {
-      endpoint: '/api/File/Upload',
+      endpoint: `${environment.apiUrl}/api/images/upload`,
       formData: true,
       fieldName: 'fileData',
     });
 
-    uppy.on('upload-success', (file, response: any) => {
-      this.imageDataService.add(response.body as ImageDatum);
-    });
+    uppy.on('upload-success', (file, response: any) => {});
   }
 }

@@ -8,7 +8,7 @@ export class ImageDataService {
   constructor(private http: HttpClient) {}
 
   get() {
-    const url = `${environment.apiUrl}/api/Image/Files`;
+    const url = `${environment.apiUrl}/api/images/files`;
     return this.http.get<ImageDatum[]>(url);
   }
 }
