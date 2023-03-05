@@ -1,7 +1,3 @@
 <div class="container" gallerize>
-  <img
-    class="gallery-image"
-    *ngFor="let image of images$ | async"
-    src="{{ image.url }}"
-  />
+  <img class="gallery-image" *ngFor="let image of images$ | async" src="{{ image.content }}" />
 </div>
